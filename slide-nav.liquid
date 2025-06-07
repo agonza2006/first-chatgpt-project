@@ -1,0 +1,177 @@
+<style>
+  .slide-nav__details > summary::-webkit-details-marker {
+  display: none;
+  }
+
+  .slide-nav__details > summary {
+  cursor: pointer;
+  padding: 10px;
+  background-color: transparent;
+  border: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  }
+  .slide-nav__link {
+  position: relative;
+  transition: opacity .5s ease;
+  text-align: left;
+  padding: 8px 10px;
+  }
+  .slide-nav__icon-wrapper svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+  transform-origin: 50% 50%;
+  }
+
+  .slide-nav__details[open] > summary .slide-nav__icon-wrapper svg {
+  transform: scaleY(-1);
+  }
+
+  .slide-nav__details > .slide-nav__dropdown {
+  display: none !important;
+  list-style: none;
+  margin: 0;
+  padding-left: 20px;
+  }
+  .slide-nav__sublist-link:not(.slide-nav__sublist-header) {
+  padding-left: 10px;
+  padding-right: 10px;
+  }
+  .slide-nav a, .slide-nav button {
+  color: #ffffff;
+  }
+  .slide-nav__icon-wrapper {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  overflow: hidden;
+  }
+
+  .slide-nav__details[open] > .slide-nav__dropdown {
+  display: block !important;
+  position: relative;
+  left: 0;
+  visibility: visible;
+  padding: 0;
+  width: 100%;
+  opacity:1!important;
+  }
+  .slide-nav__sublist-link:not(.slide-nav__sublist-header) {
+  text-align: left;
+  font-size: 18px;
+  padding-left: 20px;
+  }
+  .slide-nav__sublist-link {
+  padding-left: 20px;
+  }
+  .slide-nav__item {
+  display: block;
+  margin: 0;
+  width: 100%;
+  padding-left: 10px;
+  }
+</style>
+
+<div class="slide-nav__overflow{% if mobile_menu_style == 'thumb' %} slide-nav__overflow--thumb{% else %} slide-nav__overflow--slide{% endif %}">
+  <nav class="slide-nav__wrapper">
+    <ul id="SlideNav" class="slide-nav">
+      {% comment %}
+        Do not show hardcoded 'Home' link if it matches the first menu link
+      {% endcomment %}
+      {%- unless main_menu.links[0].url == routes.root_url -%}
+        <li class="slide-nav__item border-bottom">
+          <a href="{{ routes.root_url }}" class="slide-nav__link">
+            {{ 'general.drawers.home' | t }}
+          </a>
+        </li>
+      {%- endunless -%}
+      {%- for link in main_menu.links -%}
+        {%- liquid
+          assign link_index = forloop.index
+          assign has_dropdown = false
+          if link.links != blank
+            assign has_dropdown = true
+          endif
+        -%}
+        <li class="slide-nav__item">
+          {%- if has_dropdown -%}
+            <details class="slide-nav__details">
+              <summary class="slide-nav__link">
+                {{ link.title }}
+                <span class="slide-nav__icon-wrapper">
+                  <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M7 10l5 5 5-5H7z" fill="currentColor"></path>
+                  </svg>
+                </span>
+              </summary>
+              <ul class="slide-nav__dropdown">
+                {%- for childlink in link.links -%}
+                  {%- liquid
+                    assign has_sub_dropdown = false
+                    if childlink.links != blank
+                      assign has_sub_dropdown = true
+                    endif
+                  -%}
+                  <li class="slide-nav__item{% unless forloop.last %} border-bottom{% endunless %}">
+                    {%- if has_sub_dropdown -%}
+                      <details class="slide-nav__details">
+                        <summary class="slide-nav__sublist-link">
+                          {{ childlink.title }}
+                          <span class="slide-nav__icon-wrapper">
+                            <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                              <path d="M7 10l5 5 5-5H7z" fill="currentColor"></path>
+                            </svg>
+                          </span>
+                        </summary>
+                        <ul class="slide-nav__dropdown">
+                          {%- for grandchildlink in childlink.links -%}
+                            <li class="slide-nav__item{% unless forloop.last %} border-bottom{% endunless %}">
+                              <a href="{{ grandchildlink.url }}" class="slide-nav__sublist-link">
+                                {{ grandchildlink.title | escape }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </details>
+                    {%- else -%}
+                      <a href="{{ childlink.url }}" class="slide-nav__sublist-link">
+                        {{ childlink.title | escape }}
+                      </a>
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </details>
+          {%- else -%}
+            <a href="{{ link.url }}" class="slide-nav__link">
+              {{ link.title }}
+            </a>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+      {%- if shop.customer_accounts_enabled -%}
+        <li class="slide-nav__item medium-up--hide">
+          <a href="{{ routes.account_url }}" class="slide-nav__link">
+            {%- if customer -%}
+              {{ 'layout.customer.account' | t }}
+            {%- else -%}
+              {{ 'layout.customer.log_in' | t }}
+            {%- endif -%}
+          </a>
+        </li>
+      {%- endif -%}
+      {%- if section.settings.header_search_enable -%}
+        <li class="slide-nav__item medium-up--hide">
+          <a href="{{ routes.search_url }}" class="slide-nav__link js-modal-open-search-modal js-no-transition">
+            {{ 'general.search.title' | t }}
+          </a>
+        </li>
+      {%- endif -%}
+    </ul>
+  </nav>
+</div>

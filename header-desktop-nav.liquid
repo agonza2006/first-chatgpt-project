@@ -1,0 +1,160 @@
+{%- liquid
+  unless limit
+    assign limit = main_menu.links.size
+  endunless
+  unless offset
+    assign offset = 0
+  endunless
+-%}
+<style>
+  .site-nav__details > summary {
+    cursor: pointer;
+    padding: 10px;
+  }
+  .site-nav__dropdown,
+  .site-nav__deep-dropdown {
+    list-style: none;
+    margin: 0;
+    padding-left: 20px;
+  }
+  details[open] > .site-nav__deep-dropdown {
+    opacity: 1;
+    transform: translateZ(0);
+    transition: all 0.3s cubic-bezier(0.2, 0.06, 0.05, 0.95);
+    visibility: visible;
+    position: relative;
+    left: 0;
+    padding: 0;
+  }
+  details[open] > .site-nav__dropdown {
+    position: fixed;
+    display: flex;
+    height: auto;
+    padding: 0;
+    top: auto;
+  }
+  .site-nav__dropdown > li {
+    position: relative;
+    width: 30%;
+    padding: 1rem;
+    padding-left: 5rem;
+  }
+  .site-nav__dropdown > li .site-nav__details > summary {
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .header-layout--right .site-nav--has-dropdown:last-child .site-nav__dropdown .site-nav__deep-dropdown,
+  .header-layout--right .site-nav--has-dropdown:nth-last-child(2) .site-nav__dropdown .site-nav__deep-dropdown {
+    left: 0;
+    right: 0;
+  }
+  .site-nav--has-dropdown:last-child details[open] > .site-nav__dropdown {
+    flex-direction: column;
+  }
+  .site-nav--has-dropdown:last-child .site-nav__dropdown > li {
+    padding: 0rem;
+    padding-left: 5rem;
+  }
+</style>
+<ul class="site-nav site-navigation small--hide">
+  {%- for link in main_menu.links limit: limit offset: offset -%}
+    {%- liquid
+      assign has_dropdown = false
+      if link.links != blank
+        assign has_dropdown = true
+      endif
+    -%}
+    <li class="site-nav__item site-nav__expanded-item{% if has_dropdown %} site-nav--has-dropdown{% endif %}{% unless template == 'index' %}{% if link.active %} site-nav--active{% endif %}{% endunless %}">
+      {% if has_dropdown %}
+        <details
+          id="site-nav-item--{{ forloop.index }}"
+          class="site-nav__details"
+          data-hover="{{ hover_menu }}"
+        >
+          <summary
+            data-link="{{ link.url }}"
+            aria-expanded="false"
+            aria-controls="site-nav-item--{{ forloop.index }}"
+            class="site-nav__link site-nav__link--underline{% if has_dropdown %} site-nav__link--has-dropdown{% endif %}"
+          >
+            {{ link.title }}
+            <svg
+              aria-hidden="true"
+              focusable="false"
+              role="presentation"
+              class="icon icon--wide icon-chevron-down"
+              viewBox="0 0 28 16"
+            >
+              <path d="m1.57 1.59 12.76 12.77L27.1 1.59" stroke-width="2" stroke="#000" fill="none"/>
+            </svg>
+          </summary>
+      {% else %}
+        <a href="{{ link.url }}" class="site-nav__link">{{ link.title }}</a>
+      {% endif %}
+
+      {%- if has_dropdown -%}
+        <ul class="site-nav__dropdown text-left">
+          {%- for childlink in link.links -%}
+            {%- liquid
+              assign has_sub_dropdown = false
+              if childlink.links != blank
+                assign has_sub_dropdown = true
+              endif
+            -%}
+            <li class="{% if childlink.active %}site-nav--active{% endif %}{% if has_sub_dropdown %} site-nav__deep-dropdown-trigger{% endif %}">
+              {% if has_sub_dropdown %}
+                <details
+                  id="site-nav-deep-item--{{ forloop.index }}"
+                  class="site-nav__details"
+                  open
+                  ontoggle="this.setAttribute('open','');"
+                >
+                  <summary
+                    data-link="{{ childlink.url }}"
+                    aria-expanded="true"
+                    aria-controls="site-nav-deep-item--{{ forloop.index }}"
+                    class="site-nav__dropdown-link site-nav__dropdown-link--second-level{% if has_sub_dropdown %} site-nav__dropdown-link--has-children{% endif %}"
+                  >
+                    {{ childlink.title | escape }}
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      role="presentation"
+                      class="icon icon--wide icon-chevron-down"
+                      viewBox="0 0 28 16"
+                    >
+                      <path d="m1.57 1.59 12.76 12.77L27.1 1.59" stroke-width="2" stroke="#000" fill="none"/>
+                    </svg>
+                  </summary>
+              {% else %}
+                <a href="{{ childlink.url }}" class="site-nav__dropdown-link site-nav__dropdown-link--second-level">
+                  {{ childlink.title | escape }}
+                </a>
+              {% endif %}
+
+              {%- if has_sub_dropdown -%}
+                <ul class="site-nav__deep-dropdown">
+                  {%- for grandchildlink in childlink.links -%}
+                    <li>
+                      <a href="{{ grandchildlink.url }}" class="site-nav__dropdown-link">
+                        {{ grandchildlink.title | escape }}
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+
+              {% if has_sub_dropdown %}
+                </details>
+              {% endif %}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {% if has_dropdown %}
+        </details>
+      {% endif %}
+    </li>
+  {%- endfor -%}
+</ul>
