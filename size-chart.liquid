@@ -1,0 +1,219 @@
+<style>
+  .size-container {
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  max-width: 1300px;
+  }
+
+  .size-grid {
+  display: flex;
+  }
+
+  .size-item {
+  width: 100%;
+  display: flex;
+  flex: 0 0 100%;
+  gap: 50px;
+  max-height: 550px;
+  overflow: hidden;
+  padding: 50px;
+  }
+
+  .size-item img {
+  object-fit: contain;
+  height: auto;
+  }
+
+  .size-tabs-container {
+  display: flex;
+  }
+
+  .f-title {
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 69.98px;
+  text-align: left;
+  text-transform: uppercase;
+  padding: 0 80px;
+  padding-top: 100px;
+  }
+
+  .f-subtitle {
+   text-transform: uppercase;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 33px;
+  text-align: left;
+  color: rgba(103, 102, 101, 1);
+  padding: 0 80px;
+  }
+  @media screen and (max-width: 990px) {
+  .size-container {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 3rem 0;
+  padding-bottom: 0;
+  padding-top: 0px;
+  }
+
+  .f-title {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 35px;
+  font-weight: 400;
+  text-align: left;
+  padding: 20px;
+  padding-top: 30px;
+  padding-bottom: 0px;
+  }
+
+  .f-subtitle {
+   text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  padding: 20px;
+  padding-top: 0px;
+  }
+
+  .size-grid {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  padding: 20px;
+  }
+
+  .size-item {
+  padding: 0px;
+  max-height: 100%;
+  gap: 20px;
+  justify-content: flex-end;
+  flex-direction: column-reverse;
+  }
+  .dots-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 0px;
+  margin-bottom: 50px;
+  }
+
+  .dot {
+  display: block !important;
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  background: #0000001a;
+  transition: background-color 0.4s ease;
+  border: 1px solid white;
+  }
+
+  .dot.active {
+  display:block!important;
+  background-color: white;
+  }
+  .size-item img{
+  width:100%!important;
+  }
+  }
+</style>
+<div>
+  <h1 class="f-title">{{ section.settings.title }}</h1>
+  <h2 class="f-subtitle">{{ section.settings.subtitle }}</h2>
+  <div class="size-container">
+    {% for block in section.blocks %}
+      <div class="size-grid" id="tab-{{ block.id }}">
+        <div class="size-item">
+          <img src="{{ block.settings.image_1_url | img_url: 'master' }}" style="width: 40%;">
+          <img src="{{ block.settings.image_2_url | img_url: 'master' }}" style="width: 60%;">
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="dots-container">
+    {% for block in section.blocks %}
+      <div class="dot {% if forloop.first %}active{% endif %}" data-dot="{{ forloop.index }}"></div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const faqWrapper = document.querySelector('.size-container');
+    const faqItems = document.querySelectorAll('.size-grid');
+    const dots = document.querySelectorAll('.dot');
+
+    function setActiveDot(index) {
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[index].classList.add('active');
+    }
+
+    faqWrapper.addEventListener('scroll', function() {
+      const scrollLeft = faqWrapper.scrollLeft;
+      const itemWidth = faqItems[0].offsetWidth;
+      const currentIndex = Math.round(scrollLeft / itemWidth);
+
+      setActiveDot(currentIndex);
+    });
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', function() {
+        const itemWidth = faqItems[0].offsetWidth;
+        const scrollAmount = itemWidth * index;
+        faqWrapper.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+        setActiveDot(index);
+      });
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "Size Section with Tabs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Section Subtitle"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "size_block",
+      "name": "Size Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_1_url",
+          "label": "Image 1 URL"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2_url",
+          "label": "Image 2 URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Size Section",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "size_block",
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
