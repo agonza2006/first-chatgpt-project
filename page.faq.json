@@ -1,0 +1,151 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "tab_menu_xeFLGm": {
+      "type": "tab-menu",
+      "blocks": {
+        "faq_block_apQfpP": {
+          "type": "faq_block",
+          "settings": {
+            "tab_title": "All",
+            "heading_1": "How long will it take to get my order?",
+            "text_1": "Once your order is forged in our lair, it typically takes 3-5 business days to prepare for shipping, followed by 5-7 business days for delivery, depending on your location. That’s our official policy, but between you and me, we usually get your order out a lot faster. If you’re in a hurry to get your hands on the goods, we’ve got expedited shipping options to quench your thirst faster.",
+            "heading_2": "Will a certain design rise from the dead and be restocked? Do you have a mailing list?",
+            "text_2": "Some designs are eternal, others are fleeting. We resurrect popular pieces as often as we can, but restock times vary. Want to be the first to know when a coveted item returns? Join our mailing list, and you’ll get exclusive updates, early access to drops, and maybe a few surprises we’ve conjured up for our most loyal followers.",
+            "heading_3": "Do you offer international shipping?",
+            "text_3": "Yes, our dark threads know no boundaries. We ship worldwide, spreading our brand of rebellion across the globe. Shipping times and costs vary depending on your location, so check out our shipping info page for all the details.",
+            "heading_4": "Can I modify or cancel my order after it's been placed?",
+            "text_4": "Orders are locked in as soon as they’re placed, but if you need to make changes or cancel, contact us immediately at forbiddenalchemy669@gmail.com. If we catch it before it ships, we’ll do our best to help out.",
+            "heading_5": "What if I receive something that’s been damaged in the underworld or the wrong item altogether?",
+            "text_5": "If your gear arrives damaged or if we’ve made an error, reach out to us immediately at forbiddenalchemy669@gmail.com. Show us what’s wrong, and we’ll make it right—fast. We’re all about bringing you the threads you deserve, no excuses.",
+            "heading_6": "How will I know the status of my refund?",
+            "text_6": "Once we’ve received and inspected your return, we’ll notify you of the next steps. If your refund is approved, you’ll see the money returned to your original payment method within 10 business days. Still waiting after 15 days? Shoot us an email at forbiddenalchemy669@gmail.com, and we’ll sort it out.",
+            "heading_7": "How can I be sure your clothing fits?",
+            "text_7": "We know the importance of the perfect fit. Check out our detailed size guide on each product page to make sure you’re getting the right size. Still unsure? Reach out, and we’ll help you nail it.",
+            "heading_8": "Do you collaborate with artists or influencers?",
+            "text_8": "We’re always on the lookout for creators who align with our vision of dark, uncompromising style. If you’re an artist or influencer who shares our ethos, hit us up. Let’s see what kind of chaos we can create together."
+          }
+        },
+        "faq_block_MQKULh": {
+          "type": "faq_block",
+          "settings": {
+            "tab_title": "Shipping",
+            "heading_1": "How long will it take to get my order?",
+            "text_1": "Once your order is forged in our lair, it typically takes 3-5 business days to prepare for shipping, followed by 5-7 business days for delivery, depending on your location. That’s our official policy, but between you and me, we usually get your order out a lot faster. If you’re in a hurry to get your hands on the goods, we’ve got expedited shipping options to quench your thirst faster.",
+            "heading_2": "Do you offer international shipping?",
+            "text_2": "Yes, our dark threads know no boundaries. We ship worldwide, spreading our brand of rebellion across the globe. Shipping times and costs vary depending on your location, so check out our shipping info page for all the details.",
+            "heading_3": "",
+            "text_3": "",
+            "heading_4": "",
+            "text_4": "",
+            "heading_5": "",
+            "text_5": "",
+            "heading_6": "",
+            "text_6": "",
+            "heading_7": "",
+            "text_7": "",
+            "heading_8": "",
+            "text_8": ""
+          }
+        },
+        "faq_block_gyMLaW": {
+          "type": "faq_block",
+          "settings": {
+            "tab_title": "Ordering",
+            "heading_1": "Can I modify or cancel my order after it's been placed?",
+            "text_1": "Orders are locked in as soon as they’re placed, but if you need to make changes or cancel, contact us immediately at forbiddenalchemy669@gmail.com. If we catch it before it ships, we’ll do our best to help out.",
+            "heading_2": "",
+            "text_2": "",
+            "heading_3": "",
+            "text_3": "",
+            "heading_4": "",
+            "text_4": "",
+            "heading_5": "",
+            "text_5": "",
+            "heading_6": "",
+            "text_6": "",
+            "heading_7": "",
+            "text_7": "",
+            "heading_8": "",
+            "text_8": ""
+          }
+        },
+        "faq_block_iqgJet": {
+          "type": "faq_block",
+          "settings": {
+            "tab_title": "Returns",
+            "heading_1": "What if I receive something that’s been damaged in the underworld or the wrong item altogether?",
+            "text_1": "If your gear arrives damaged or if we’ve made an error, reach out to us immediately at forbiddenalchemy669@gmail.com. Show us what’s wrong, and we’ll make it right—fast. We’re all about bringing you the threads you deserve, no excuses.",
+            "heading_2": "How will I know the status of my refund?",
+            "text_2": "Once we’ve received and inspected your return, we’ll notify you of the next steps. If your refund is approved, you’ll see the money returned to your original payment method within 10 business days. Still waiting after 15 days? Shoot us an email at forbiddenalchemy669@gmail.com, and we’ll sort it out.",
+            "heading_3": "",
+            "text_3": "",
+            "heading_4": "",
+            "text_4": "",
+            "heading_5": "",
+            "text_5": "",
+            "heading_6": "",
+            "text_6": "",
+            "heading_7": "",
+            "text_7": "",
+            "heading_8": "",
+            "text_8": ""
+          }
+        },
+        "faq_block_iRFJNJ": {
+          "type": "faq_block",
+          "settings": {
+            "tab_title": "Support",
+            "heading_1": "Will a certain design rise from the dead and be restocked? Do you have a mailing list?",
+            "text_1": "Some designs are eternal, others are fleeting. We resurrect popular pieces as often as we can, but restock times vary. Want to be the first to know when a coveted item returns? Join our mailing list, and you’ll get exclusive updates, early access to drops, and maybe a few surprises we’ve conjured up for our most loyal followers.",
+            "heading_2": "How can I be sure your clothing fits?",
+            "text_2": "We know the importance of the perfect fit. Check out our detailed size guide on each product page to make sure you’re getting the right size. Still unsure? Reach out, and we’ll help you nail it.",
+            "heading_3": "Do you collaborate with artists or influencers?",
+            "text_3": "We’re always on the lookout for creators who align with our vision of dark, uncompromising style. If you’re an artist or influencer who shares our ethos, hit us up. Let’s see what kind of chaos we can create together.",
+            "heading_4": "",
+            "text_4": "",
+            "heading_5": "",
+            "text_5": "",
+            "heading_6": "",
+            "text_6": "",
+            "heading_7": "",
+            "text_7": "",
+            "heading_8": "",
+            "text_8": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_block_apQfpP",
+        "faq_block_MQKULh",
+        "faq_block_gyMLaW",
+        "faq_block_iqgJet",
+        "faq_block_iRFJNJ"
+      ],
+      "custom_css": [
+        "{background-image: url(https://cdn.shopify.com/s/files/1/0263/7742/0846/files/Group_1597883653_2.png?v=1725523799); background-position: top; background-repeat: no-repeat; background-size: cover;}"
+      ],
+      "settings": {
+        "title": "FAQ",
+        "subtitle": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "tab_menu_xeFLGm"
+  ]
+}
